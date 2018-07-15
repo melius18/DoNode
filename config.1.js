@@ -8,5 +8,8 @@ module.exports = {
         }
     ],
     route_info: [
+        { file: './user', path: '/login', method: 'login', type: 'post' },
+        { file: './user', path: '/adduser', method: 'adduser', type: 'post' },
+        { file: './user', path: '/listuser', method: 'listuser', type: 'post' },
     ]
 };

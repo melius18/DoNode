@@ -1,12 +1,12 @@
 var login = function (req, res) {
     console.log('login post called.');
 
-    var paramId = req.body.id;
+    var paramEmail = req.body.email;
     var paramPassword = req.body.password;
     var database = req.app.get('database');
 
     if (database.db) {
-        authUser(database, paramId, paramPassword, function (err, docs) {
+        authUser(database, paramEmail, paramPassword, function (err, docs) {
             if (err) { throw err; }
             if (docs) {
                 res.writeHead('200', { 'Content-Type': 'text/html; charset=utf8' });
@@ -24,14 +24,18 @@ var login = function (req, res) {
 var adduser = function (req, res) {
     console.log('adduser post called.');
 
-    var paramId = req.body.id;
+    var paramEmail = req.body.email;
     var paramPassword = req.body.password;
     var paramName = req.body.name;
     var database = req.app.get('database');
 
     if (database.db) {
-        addUser(database, paramId, paramPassword, paramName, function (err, results) {
-            if (err) { throw err; }
+        addUser(database, paramEmail, paramPassword, paramName, function (err, results) {
+            if (err) {
+                console.log("error :" + err); 
+                console.dir(err); 
+                throw err; 
+            }
             console.dir(results);
             if (results) {
                 res.writeHead('200', { 'Content-Type': 'text/html; charset=utf8' });
@@ -60,7 +64,7 @@ var listuser = function (req, res) {
                 res.write('<div><ul>');
 
                 for (var i = 0; i < results.length; i++) {
-                    var curId = results[i]._doc.id;
+                    var curId = results[i]._doc.email;
                     var curName = results[i]._doc.name;
                     res.write('    <li>#' + i + ' : ' + curId + ', ' + curName + '</li>');
                 }
@@ -81,9 +85,9 @@ var listuser = function (req, res) {
 
 };
 
-var authUser = function (database, id, password, callback) {
+var authUser = function (database, email, password, callback) {
     console.log("authUser()");
-    database.UserModel.find({ "id": id, "password": password }, function (err, results) {
+    database.UserModel.find({ "email": email, "password": password }, function (err, results) {
         if (err) {
             callback(err, null);
             return;
@@ -99,9 +103,9 @@ var authUser = function (database, id, password, callback) {
     });
 }
 
-var addUser = function (database, id, password, name, callback) {
+var addUser = function (database, email, password, name, callback) {
     console.log("addUser()");
-    var user = new database.UserModel({ "id": id, "password": password, "name": name });
+    var user = new database.UserModel({ "email": email, "password": password, "name": name });
     user.save(function (err) {
         if (err) {
             callback(err, null);
