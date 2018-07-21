@@ -1,3 +1,5 @@
+// bungi01: local strategy
+
 var express = require('express');
 var bodyParser = require('body-parser');    // for post method, push body json to req.body
 var static = require('serve-static');       // for static folder
