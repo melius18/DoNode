@@ -14,9 +14,9 @@ var expressSession = require('express-session');
 
 var app = express();
 app.set('port', process.env.PORT || config.sever_port);
-app.set('views', __dirname + '/views');
 
-// view engine setting
+// ra.0720 1. view engine setting
+app.set('views', __dirname + '/views');
 // app.set('view engine', 'ejs');
 app.set('view engine', 'pug');
 

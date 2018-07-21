@@ -82,7 +82,7 @@ function initRoutes(app, router, passport) {
             // res.write('<p>' + req.user.name + '</p>');
             // res.end();
 
-            // Change to ejs view engine
+            // ra.0720 3. change to ejs view engine
             var context = { useremail: req.user.email, username: req.user.name }
             req.app.render('login_success', context, function (err, html) {
                 if (err) {
