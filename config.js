@@ -1,7 +1,7 @@
 // ra.0722
 var fs = require('fs');
-var clientID = fs.readFileSync('D:/src_code/JavaScript/facebook/clientID.txt', 'utf-8');
-var clientSecret = fs.readFileSync('D:/src_code/JavaScript/facebook/clientSecret.txt', 'utf-8');
+var clientID = fs.readFileSync('C:/_rfolder/src/facebook/clientID.txt', 'utf-8');
+var clientSecret = fs.readFileSync('C:/_rfolder/src/facebook/clientSecret.txt', 'utf-8');
 
 module.exports = {
     sever_port1: 3000,

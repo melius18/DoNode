@@ -10,8 +10,8 @@ var database = require('./database/database');
 var https = require('https');
 var fs = require('fs');
 var options = {
-    key: fs.readFileSync('C:/OpenSSL-Win64/bin/key.pem'),
-    cert: fs.readFileSync('C:/OpenSSL-Win64/bin/cert.pem')
+    key: fs.readFileSync('C:/_rfolder/src/https/key.pem'),
+    cert: fs.readFileSync('C:/_rfolder/src/https/cert.pem')
 };
 
 // ra.0721 1. passport module import
