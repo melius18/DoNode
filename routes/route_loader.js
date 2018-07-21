@@ -104,7 +104,7 @@ function initRoutes(app, router, passport) {
         res.redirect('/');
     });
 
-    // ra.0722
+    // ra.0722 7. url for OAuth
     router.route('/auth/facebook').get(passport.authenticate('facebook', {
         scope: 'email'
     }));

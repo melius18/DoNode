@@ -1,6 +1,7 @@
 var FacebookStrategy = require('passport-facebook').Strategy;
 var config = require('../../config');
 
+// ra.0722 5. verify callback
 module.exports = function (app, passport) {
     return new FacebookStrategy({
         clientID: config.facebook.clientID,

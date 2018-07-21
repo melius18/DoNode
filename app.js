@@ -6,7 +6,7 @@ var static = require('serve-static');       // for static folder
 var config = require('./config');
 var database = require('./database/database');
 
-// ra.0722
+// ra.0722 1. https
 var https = require('https');
 var fs = require('fs');
 var options = {
@@ -51,7 +51,7 @@ var router = express.Router();
 var router_loader = require('./routes/route_loader');
 router_loader.init(app, router, passport);
 
-// ra.0722
+// ra.0722 2. https server
 // app.listen(app.get('port'), function () {
 //     console.log('server start at ' + app.get('port'));
 //     database.init(app, config);

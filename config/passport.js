@@ -23,6 +23,6 @@ module.exports = function(app, passport) {
     passport.use('local-login', local_login);
     passport.use('local-signup', local_signup);
 
-    // ra.0722
+    // ra.0722 6. strategy setting for social login
     passport.use('facebook', facebook(app, passport));
 }

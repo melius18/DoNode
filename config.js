@@ -1,4 +1,4 @@
-// ra.0722
+// ra.0722 3. facebook client info
 var fs = require('fs');
 var clientID = fs.readFileSync('C:/_rfolder/src/facebook/clientID.txt', 'utf-8');
 var clientSecret = fs.readFileSync('C:/_rfolder/src/facebook/clientSecret.txt', 'utf-8');
@@ -14,7 +14,7 @@ module.exports = {
     ],
     route_info: [
     ],
-    // ra.0722
+    // ra.0722 4. facebook client info 
     sever_port2: 443,
     facebook : {
         clientID: clientID,
