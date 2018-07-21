@@ -1,5 +1,6 @@
 var Schema = {};
 
+// ra.0721 3. database schema change
 Schema.createSchema = function (mongoose) {
     var UserSchema = mongoose.Schema({
         email: { type: String, 'default': '' },
@@ -7,6 +8,7 @@ Schema.createSchema = function (mongoose) {
         password: { type: String, required: true, 'default': '' }
     });
 
+    // check email value for null
     UserSchema.path('email').validate(function (email) {
         return email.length;
     }, 'no email value');
@@ -15,6 +17,7 @@ Schema.createSchema = function (mongoose) {
         return password.length;
     }, 'no email value');
 
+    // declare static function
     UserSchema.static('findByEmail', function (email, callback) {
         return this.find({ email: email }, callback);
     });

@@ -19,6 +19,7 @@ function initRoutes(app, router, passport) {
         res.end();
     });
 
+    // ra.0721 8. strategy assign (local-login)
     router.route('/login').post(passport.authenticate('local-login',
         {
             successRedirect: '/profile'
@@ -35,13 +36,30 @@ function initRoutes(app, router, passport) {
         res.end();
     });
 
+    // ra.0721 8. strategy assign (local-signup)
     router.route('/signup').post(passport.authenticate('local-signup',
         {
-            successRedirect: '/profile'
+            successRedirect: '/signupsuc'
             , failureRedirect: '/signup'
             , failureFlash: true
         }
     ));
+
+    router.route('/signupsuc').get(function (req, res) {
+        // Change to ejs view engine
+        res.writeHead('200', { 'Content-Type': 'text/html; charset=utf8' });
+        var context = { title: 'signup success' }
+        req.app.render('adduser', context, function (err, html) {
+            if (err) {
+                console.error('view engine error: ' + err.stack);
+                res.write('<h2>view engine error</h2>');
+                res.write('<p>' + err.stack + '</p>');
+                res.end();
+                return;
+            }
+            res.end(html);
+        });
+    });
 
     router.route('/profile').get(function (req, res) {
         console.log('/profile: get');
@@ -60,14 +78,28 @@ function initRoutes(app, router, passport) {
             res.end();
         } else {
             res.writeHead('200', { 'Content-Type': 'text/html; charset=utf8' });
-            res.write('<p>' + req.user.email + '</p>');
-            res.write('<p>' + req.user.name + '</p>');
-            res.end();
+            // res.write('<p>' + req.user.email + '</p>');
+            // res.write('<p>' + req.user.name + '</p>');
+            // res.end();
+
+            // Change to ejs view engine
+            var context = { useremail: req.user.email, username: req.user.name }
+            req.app.render('login_success', context, function (err, html) {
+                if (err) {
+                    console.error('view engine error: ' + err.stack);
+                    res.write('<h2>view engine error</h2>');
+                    res.write('<p>' + err.stack + '</p>');
+                    res.end();
+                    return;
+                }
+                res.end(html);
+            });
         }
     });
 
     router.route('/logout').get(function (req, res) {
         console.log('/logout: get');
+        // ra.0721 9. logout
         req.logout();
         res.redirect('/');
     });

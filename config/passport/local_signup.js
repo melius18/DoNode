@@ -1,5 +1,6 @@
 var LocalStrategy = require('passport-local').Strategy;
 
+// ra.0721 4. verify callback (local-signup)
 module.exports = new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
