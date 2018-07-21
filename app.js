@@ -1,4 +1,4 @@
-// bungi01: local strategy
+// bungi02: facebook strategy
 
 var express = require('express');
 var bodyParser = require('body-parser');    // for post method, push body json to req.body
