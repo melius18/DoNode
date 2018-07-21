@@ -1,5 +1,6 @@
 var local_login = require('./passport/local_login');
 var local_signup = require('./passport/local_signup');
+var facebook = require('./passport/facebook');
 
 module.exports = function(app, passport) {
     console.log("config/passport");
@@ -21,4 +22,7 @@ module.exports = function(app, passport) {
     // ra.0721 5. strategy setting
     passport.use('local-login', local_login);
     passport.use('local-signup', local_signup);
+
+    // ra.0722
+    passport.use('facebook', facebook(app, passport));
 }

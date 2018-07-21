@@ -6,6 +6,14 @@ var static = require('serve-static');       // for static folder
 var config = require('./config');
 var database = require('./database/database');
 
+// ra.0722
+var https = require('https');
+var fs = require('fs');
+var options = {
+    key: fs.readFileSync('C:/OpenSSL-Win64/bin/key.pem'),
+    cert: fs.readFileSync('C:/OpenSSL-Win64/bin/cert.pem')
+};
+
 // ra.0721 1. passport module import
 var passport = require('passport');
 var flash = require('connect-flash');
@@ -13,7 +21,7 @@ var path = require('path');
 var expressSession = require('express-session');
 
 var app = express();
-app.set('port', process.env.PORT || config.sever_port);
+app.set('port', process.env.PORT || config.sever_port1);
 app.set('views', __dirname + '/views');
 
 // view engine setting
@@ -43,7 +51,13 @@ var router = express.Router();
 var router_loader = require('./routes/route_loader');
 router_loader.init(app, router, passport);
 
-app.listen(app.get('port'), function () {
-    console.log('server start at ' + app.get('port'));
+// ra.0722
+// app.listen(app.get('port'), function () {
+//     console.log('server start at ' + app.get('port'));
+//     database.init(app, config);
+// });
+
+https.createServer(options, app).listen(config.sever_port2, function(){
+    console.log('server start at ' + config.sever_port2);
     database.init(app, config);
 });

@@ -103,6 +103,17 @@ function initRoutes(app, router, passport) {
         req.logout();
         res.redirect('/');
     });
+
+    // ra.0722
+    router.route('/auth/facebook').get(passport.authenticate('facebook', {
+        scope: 'email'
+    }));
+
+    router.route('/auth/facebook/callback').get(passport.authenticate('facebook', {
+        successRedirect: '/profile',
+        failureRedirect: '/'
+    }));
+
     app.use('/', router);
 }
 
